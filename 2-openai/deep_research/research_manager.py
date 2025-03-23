@@ -7,7 +7,7 @@ import asyncio
 
 class ResearchManager:
 
-    async def run(self, query: str) -> None:
+    async def run(self, query: str):
         trace_id = gen_trace_id()
         with trace("Research trace", trace_id=trace_id):
             print(f"View trace: https://platform.openai.com/traces/{trace_id}")
