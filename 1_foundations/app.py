@@ -88,13 +88,13 @@ class Me:
             self.summary = f.read()
 
 
-    def handle_tool_call(self, message):
+    def handle_tool_call(self, tool_calls):
         results = []
-        for tool_call in message.tool_calls:
+        for tool_call in tool_calls:
             tool_name = tool_call.function.name
             arguments = json.loads(tool_call.function.arguments)
             print(f"Tool called: {tool_name}", flush=True)
-            tool = globals()[tool_name]
+            tool = globals().get(tool_name)
             result = tool(**arguments) if tool else {}
             results.append({"role": "tool","content": json.dumps(result),"tool_call_id": tool_call.id})
         return results
@@ -119,7 +119,8 @@ If the user is engaging in discussion, try to steer them towards getting in touc
             response = self.openai.chat.completions.create(model="gpt-4o-mini", messages=messages, tools=tools)
             if response.choices[0].finish_reason=="tool_calls":
                 message = response.choices[0].message
-                results = self.handle_tool_call(message)
+                tool_calls = message.tool_calls
+                results = self.handle_tool_call(tool_calls)
                 messages.append(message)
                 messages.extend(results)
             else:
