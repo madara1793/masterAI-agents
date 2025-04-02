@@ -16,8 +16,8 @@ with gr.Blocks(theme=gr.themes.Default(primary_hue="sky")) as ui:
     run_button = gr.Button("Run", variant="primary")
     report = gr.Markdown(label="Report")
     
-    run_button.click(run, inputs=query, outputs=report, queue=True)
-    query.submit(run, inputs=query, outputs=report, queue=True)
+    run_button.click(fn=run, inputs=query, outputs=report)
+    query.submit(fn=run, inputs=query, outputs=report)
 
-ui.queue().launch()
+ui.launch(inbrowser=True)
 
