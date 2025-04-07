@@ -30,7 +30,7 @@ class Agent(RoutedAgent):
         self._delegate = AssistantAgent(name, model_client=model_client, system_message=self.system_message)
 
     @message_handler
-    async def handle_my_message_type(self, message: messages.Message, ctx: MessageContext) -> messages.Message:
+    async def handle_message(self, message: messages.Message, ctx: MessageContext) -> messages.Message:
         print(f"{self.id.type}: Received message")
         text_message = TextMessage(content=message.content, source="user")
         response = await self._delegate.on_messages([text_message], ctx.cancellation_token)

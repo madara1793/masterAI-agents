@@ -26,6 +26,7 @@ class Creator(RoutedAgent):
     You can choose to keep their overall goal the same, or change it.
     You can choose to take this Agent in a completely different direction. The only requirement is that the class must be named Agent,
     and it must inherit from RoutedAgent and have an __init__ method that takes a name parameter.
+    Also avoid environmental interests - try to mix up the business verticals so that every agent is different.
     Respond only with the python code, no other text, and no markdown code blocks.
     """
 
