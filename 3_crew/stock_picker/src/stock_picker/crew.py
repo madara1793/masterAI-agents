@@ -1,22 +1,33 @@
 from crewai import Agent, Crew, Process, Task
 from crewai.project import CrewBase, agent, crew, task
+from crewai_tools import SerperDevTool
 from pydantic import BaseModel, Field
 from typing import List
+from .tools.push_tool import PushNotificationTool
+from crewai.memory import LongTermMemory, ShortTermMemory, EntityMemory
+from crewai.memory.storage.rag_storage import RAGStorage
+from crewai.memory.storage.ltm_sqlite_storage import LTMSQLiteStorage
 
-class Company(BaseModel):
+class TrendingCompany(BaseModel):
+    """ A company that is in the news and attracting attention """
     name: str = Field(description="Company name")
     ticker: str = Field(description="Stock ticker symbol")
-    reason: str = Field(description="Reason this company is newsworthy")
+    reason: str = Field(description="Reason this company is trending in the news")
 
-class MarketWatchOutput(BaseModel):
-    companies: List[Company] = Field(description="List of 3 newsworthy companies")
+class TrendingCompanyList(BaseModel):
+    """ List of multiple trending companies that are in the news """
+    companies: List[TrendingCompany] = Field(description="List of companies trending in the news")
 
-class CompanyAnalysis(BaseModel):
-    company: Company = Field(description="Company information")
-    financial_analysis: str = Field(description="Financial analysis of the company")
+class TrendingCompanyResearch(BaseModel):
+    """ Detailed research on a company """
+    name: str = Field(description="Company name")
     market_position: str = Field(description="Current market position and competitive analysis")
     future_outlook: str = Field(description="Future outlook and growth prospects")
     investment_potential: str = Field(description="Investment potential and suitability for investment")
+
+class TrendingCompanyResearchList(BaseModel):
+    """ A list of detailed research on all the companies """
+    research_list: List[TrendingCompanyResearch] = Field(description="Comprehensive research on all trending companies")
 
 
 @CrewBase
@@ -26,74 +37,89 @@ class StockPicker():
     agents_config = 'config/agents.yaml'
     tasks_config = 'config/tasks.yaml'
 
-    # Track company analyses
-    company_analyses = []
-
     @agent
-    def market_watcher(self) -> Agent:
-        return Agent(config=self.agents_config['market_watcher'])
+    def trending_company_finder(self) -> Agent:
+        return Agent(config=self.agents_config['trending_company_finder'],
+                     tools=[SerperDevTool()], memory=True)
     
     @agent
-    def researcher(self) -> Agent:
-        return Agent(config=self.agents_config['researcher'])
+    def financial_researcher(self) -> Agent:
+        return Agent(config=self.agents_config['financial_researcher'], 
+                     tools=[SerperDevTool()])
 
     @agent
-    def analyst(self) -> Agent:
-        return Agent(config=self.agents_config['analyst'])
+    def stock_picker(self) -> Agent:
+        return Agent(config=self.agents_config['stock_picker'], 
+                     tools=[PushNotificationTool()], memory=True)
     
     @task
-    def market_watch_task(self) -> Task:
+    def find_trending_companies(self) -> Task:
         return Task(
-            config=self.tasks_config['market_watch_task'],
-            output_schema=MarketWatchOutput,
-            callback=self.create_research_tasks
+            config=self.tasks_config['find_trending_companies'],
+            output_pydantic=TrendingCompanyList,
         )
-
-    def create_research_tasks(self, output):
-        """Callback to dynamically create research tasks for each company"""
-        if not isinstance(output, MarketWatchOutput):
-            # Handle the case where output isn't properly structured
-            return
-        
-        self.company_analyses = []
-        research_tasks = []
-        
-        # Create a research task for each company
-        for company in output.companies:
-            research_task = Task(
-                description=f"Thorough research on company: {company.name} ({company.ticker}) focusing on current news, financial health and investment potential",
-                expected_output=f"Detailed analysis of {company.name} and suitability for investment",
-                agent=self.researcher,
-                output_schema=CompanyAnalysis,
-                context=company.model_dump_json(),
-                callback=self.store_company_analysis
-            )
-            research_tasks.append(research_task)
-        
-        # Return the dynamically created tasks
-        return research_tasks
-    
-    def store_company_analysis(self, output, task):
-        """Store each company analysis as it's completed"""
-        self.company_analyses.append(output)
-
 
     @task
-    def analysis_task(self) -> Task:
+    def research_trending_companies(self) -> Task:
         return Task(
-            config=self.tasks_config['analysis_task'],
-            dependencies=[self.market_watch_task],
-            output_file='report.md',
-            context=self.company_analyses
+            config=self.tasks_config['research_trending_companies'],
+            output_pydantic=TrendingCompanyResearchList,
         )
+
+    @task
+    def pick_best_company(self) -> Task:
+        return Task(
+            config=self.tasks_config['pick_best_company'],
+        )
+    
+
+
 
     @crew
     def crew(self) -> Crew:
         """Creates the StockPicker crew"""
 
+        manager = Agent(
+            config=self.agents_config['manager'],
+            allow_delegation=True
+        )
+            
         return Crew(
             agents=self.agents,
-            tasks=self.tasks,
-            process=Process.sequential,
+            tasks=self.tasks, 
+            process=Process.hierarchical,
             verbose=True,
+            manager_agent=manager,
+            memory=True,
+            # Long-term memory for persistent storage across sessions
+            long_term_memory = LongTermMemory(
+                storage=LTMSQLiteStorage(
+                    db_path="./memory/long_term_memory_storage.db"
+                )
+            ),
+            # Short-term memory for current context using RAG
+            short_term_memory = ShortTermMemory(
+                storage = RAGStorage(
+                        embedder_config={
+                            "provider": "openai",
+                            "config": {
+                                "model": 'text-embedding-3-small'
+                            }
+                        },
+                        type="short_term",
+                        path="./memory/"
+                    )
+                ),            # Entity memory for tracking key information about entities
+            entity_memory = EntityMemory(
+                storage=RAGStorage(
+                    embedder_config={
+                        "provider": "openai",
+                        "config": {
+                            "model": 'text-embedding-3-small'
+                        }
+                    },
+                    type="short_term",
+                    path="./memory/"
+                )
+            ),
         )

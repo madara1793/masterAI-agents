@@ -10,6 +10,9 @@ class Coder():
     agents_config = 'config/agents.yaml'
     tasks_config = 'config/tasks.yaml'
 
+    # One click install for Docker Desktop:
+    #https://docs.docker.com/desktop/
+
     @agent
     def coder(self) -> Agent:
         return Agent(

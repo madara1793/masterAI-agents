@@ -3,9 +3,11 @@ design_task:
     Take the high level requirements described here and prepare a detailed design for the engineer;
     everything should be in 1 python module, but outline the classes and methods in the module.
     Here are the requirements: {requirements}
+    IMPORTANT: Only output the design in markdown format, laying out in detail the classes and functions in the module, describing the functionality.
   expected_output: >
     A detailed design for the engineer, identifying the classes and functions in the module.
   agent: engineering_lead
+  output_file: output/{module_name}_design.md
 
 code_task:
   description: >
