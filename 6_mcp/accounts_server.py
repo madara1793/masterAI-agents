@@ -33,6 +33,7 @@ async def buy_shares(name: str, symbol: str, quantity: int, rationale: str) -> f
     """
     return Account.get(name).buy_shares(symbol, quantity, rationale)
 
+
 @mcp.tool()
 async def sell_shares(name: str, symbol: str, quantity: int, rationale: str) -> float:
     """Sell shares of a stock.
@@ -45,10 +46,25 @@ async def sell_shares(name: str, symbol: str, quantity: int, rationale: str) -> 
     """
     return Account.get(name).sell_shares(symbol, quantity, rationale)
 
-@mcp.resource("file://accounts_server/{name}")
-async def read_resource(name: str) -> str:
+@mcp.tool()
+async def change_strategy(name: str, strategy: str) -> str:
+    """At your discretion, if you choose to, call this to change your investment strategy for the future.
+
+    Args:
+        name: The name of the account holder
+        strategy: The new strategy for the account
+    """
+    return Account.get(name).change_strategy(strategy)
+
+@mcp.resource("accounts://accounts_server/{name}")
+async def read_account_resource(name: str) -> str:
     account = Account.get(name.lower())
     return account.report()
+
+@mcp.resource("accounts://strategy/{name}")
+async def read_strategy_resource(name: str) -> str:
+    account = Account.get(name.lower())
+    return account.get_strategy()
 
 if __name__ == "__main__":
     mcp.run(transport='stdio')

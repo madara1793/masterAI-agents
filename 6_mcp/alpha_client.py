@@ -20,9 +20,11 @@ async def list_stock_tools():
             return tools_result.tools
         
 async def call_stock_tool(tool_name, tool_args):
+    print(f"Calling {tool_name} with {tool_args}")
     async with websocket_client(url) as streams:
         async with mcp.ClientSession(*streams) as session:
             result = await session.call_tool(tool_name, tool_args)
+            print(f"Result: {result}")
             return result
         
 async def get_stock_tools_openai():

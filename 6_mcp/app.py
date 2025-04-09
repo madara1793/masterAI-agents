@@ -1,5 +1,4 @@
 import gradio as gr
-import asyncio
 from typing import Dict, List, Tuple, Optional
 import pandas as pd
 from traders import Trader
@@ -11,6 +10,9 @@ class TraderView:
     def __init__(self, trader: Trader):
         self.trader = trader
 
+    def get_strategy(self) -> str:
+        return self.trader.account.get("strategy")
+
     def get_portfolio_value_df(self) -> pd.DataFrame:
         df = pd.DataFrame(self.trader.account.get("portfolio_value_time_series"), columns=["datetime", "value"])
         df["datetime"] = pd.to_datetime(df["datetime"])
@@ -20,32 +22,19 @@ class TraderView:
     def get_portfolio_value_chart(self):
 
         df = self.get_portfolio_value_df()
-        # Create a Plotly figure
         fig = px.line(df, x="datetime", y="value")
         
-        # Customize the layout for a compact size
         fig.update_layout(
             height=300,
             margin=dict(l=40, r=20, t=20, b=40),
-            xaxis_title=None,  # Remove x-axis title to save space
-            yaxis_title=None,  # Remove y-axis title to save space
+            xaxis_title=None,  
+            yaxis_title=None, 
             paper_bgcolor="#bbb",
             plot_bgcolor="#dde",
         )
         
-        # Format the x-axis to show dates more compactly
-        fig.update_xaxes(
-            tickformat="%m/%d",
-            tickangle=45,
-            tickfont=dict(size=8)
-        )
-        
-        # Format the y-axis
-        fig.update_yaxes(
-            tickfont=dict(size=8),
-            range=[0, None],
-            tickformat=",.0f",
-        )
+        fig.update_xaxes(tickformat="%m/%d", tickangle=45, tickfont=dict(size=8))
+        fig.update_yaxes(tickfont=dict(size=8), range=[0, None], tickformat=",.0f")
         
         return fig
         
@@ -73,7 +62,8 @@ class TraderView:
         """Calculate total portfolio value based on current prices"""
         result = self.trader.account.get("total_portfolio_value") or 0.0
         pnl = self.trader.account.get("total_profit_loss") or 0.0
-        return f"<div style='text-align: center;font-size:36px'>${result:,.0f}</div>"
+        color = "green" if pnl >= 0 else "red"
+        return f"<div style='text-align: center;font-size:36px;background-color:{color};'>${result:,.0f}</div>"
     
     def get_balance(self) -> float:
         result = self.trader.account.get("balance") or 0.0
@@ -93,6 +83,7 @@ class TraderView:
     
     def all_components(self):
         return [
+            self.get_strategy(),
             self.get_portfolio_value(),
             self.get_balance(),
             self.get_pnl(),
@@ -109,8 +100,8 @@ def agent_ui_component(view: TraderView) -> List[gr.components.Component]:
         gr.Markdown(f"*Model: {view.trader.model_name}*")
         
         with gr.Column(variant="panel"):
-            gr.Markdown("### Investment Thesis")
-            thesis_md = gr.Markdown(view.trader.thesis, height=150)
+            gr.Markdown("### Investment Strategy")
+            strategy_md = gr.Markdown("...", height=150)
         
         with gr.Row():
             portfolio_value = gr.HTML('<div style="text-align: center;font-size:36px">$...</div>')
@@ -151,7 +142,7 @@ def agent_ui_component(view: TraderView) -> List[gr.components.Component]:
             )
 
     
-    return [portfolio_value, cash_balance, pnl, chart,holdings_table, transactions_table, thoughts_md]
+    return [strategy_md, portfolio_value, cash_balance, pnl, chart,holdings_table, transactions_table, thoughts_md]
 
 async def ui_refresh(*agents: List[TraderView]) -> Tuple:
     return tuple([component for agent in agents for component in agent.all_components()])
@@ -184,6 +175,14 @@ def create_ui():
         color: green !important;
         font-weight: bold;
     }
+    .positive-bg {
+        background-color: green !important;
+        font-weight: bold;
+    }
+    .negative-bg {
+        background-color: red !important;
+        font-weight: bold;
+    }
     .negative-pnl {
         color: red !important;
         font-weight: bold;
@@ -212,8 +211,8 @@ def create_ui():
     """
     
     
-    with gr.Blocks(title="Agent Trading Floor", css=css, js=js, theme=gr.themes.Default(primary_hue="sky")) as ui:
-        gr.HTML('<div style="text-align: center;font-size:24px">Autonomous Agentic AI Trading Simulator</div>')
+    with gr.Blocks(title="Autonomous Alpha Agents", css=css, js=js, theme=gr.themes.Default(primary_hue="sky")) as ui:
+        gr.HTML('<div style="text-align: center;font-size:24px">Autonomous Alpha Agents Trading Floor Simulator</div>')
         
         # Create states to store agents
         states = [gr.State(value=view) for view in views]
@@ -234,7 +233,7 @@ def create_ui():
         run_btn.click(fn=run_all_agents, inputs=states, outputs=components)
         refresh_btn.click(fn=ui_refresh, inputs=states, outputs=components) 
         ui.load(fn=start_all_agents,inputs=states, outputs=components)
-        # Refresh the UI r
+        # Refresh the UI 
         timer = gr.Timer(value=30*60)
         timer.tick(fn=ui_refresh, inputs=states, outputs=components)
         
