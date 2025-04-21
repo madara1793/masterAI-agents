@@ -80,7 +80,7 @@ This is OPTIONAL - there's no need to spend money on APIs if you don't want to.
 
 But it is strongly recommended for the best performance of your Agentic system.
 
-If you have concerns about API costs and would prefer to use cheap or free alternatives, please see [this guide](../guides/9_ai_apis_and_ollama.ipynb)
+If you have concerns about API costs and would prefer to use cheap or free alternatives, please see [this guide](../guides/09_ai_apis_and_ollama.ipynb)
 
 1. Create an OpenAI account if you don't have one by visiting:  
 https://platform.openai.com/

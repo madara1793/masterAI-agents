@@ -27,14 +27,14 @@ Any problems, please do contact me.
 ### Super useful resources
 
 - The course [resources](https://edwarddonner.com/2025/04/21/the-complete-agentic-ai-engineering-course/) with videos
-- Many essential guides in the [guides](guides/1_intro.ipynb) section
+- Many essential guides in the [guides](guides/01_intro.ipynb) section
 - The [troubleshooting](setup/troubleshooting.ipynb) notebook
 
 ### API costs - please read me!
 
 This course does involve making calls to OpenAI and other frontier models, requiring an API key and a small spend, which we set up in the SETUP instructions. If you'd prefer not to spend on API calls, there are cheaper alternatives like DeepSeek and free alternatives like using Ollama!
 
-Details are [here](guides/9_ai_apis_and_ollama).
+Details are [here](guides/09_ai_apis_and_ollama).
 
 Be sure to monitor your API costs to ensure you are totally happy with any spend. For OpenAI, the dashboard is [here](https://platform.openai.com/usage).
 
