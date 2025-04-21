@@ -4,7 +4,9 @@
 
 ![Autonomous Agent](assets/autonomy.png)
 
-I couldn't be more excited to welcome you! This is the start of your 6 week adventure into the powerful, astonishing and sometimes surreal world of Agentic AI.
+_If you're looking at this in Cursor, please right click on the filename in the Explorer on the left, and select "Open preview", to view the formatted version._
+
+I couldn't be more excited to welcome you! This is the start of your 6 week adventure into the powerful, astonishing and often surreal world of Agentic AI.
 
 ### Before you begin
 
@@ -26,13 +28,13 @@ Any problems, please do contact me.
 
 - The course [resources](https://edwarddonner.com) with videos
 - Many essential guides in the [guides](guides/1_intro.ipynb) section
-- The [troubleshooting](guides/troubleshooting.ipynb) notebook
+- The [troubleshooting](setup/troubleshooting.ipynb) notebook
 
 ### API costs - please read me!
 
 This course does involve making calls to OpenAI and other frontier models, requiring an API key and a small spend, which we set up in the SETUP instructions. If you'd prefer not to spend on API calls, there are cheaper alternatives like DeepSeek and free alternatives like using Ollama!
 
-Details are [here](guides/api_alternatives).
+Details are [here](guides/api_costs_and_alternatives).
 
 Be sure to monitor your API costs to ensure you are totally happy with any spend. For OpenAI, the dashboard is [here](https://platform.openai.com/usage).
 

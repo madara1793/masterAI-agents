@@ -1,17 +1,17 @@
-# LLM Engineering - Master AI and LLMs
+## Master AI Agentic Engineering -  build autonomous AI Agents
 
-## Setup instructions for Windows
+# Setup instructions for PC
 
 Welcome, PC people!
 
-I should confess up-front: setting up a powerful environment to work at the forefront of AI is not as simple as I'd like. For most people these instructions will go great; but in some cases, for whatever reason, you'll hit a problem. Please don't hesitate to reach out - I am here to get you up and running quickly. There's nothing worse than feeling _stuck_. Message me, email me or LinkedIn message me and I will unstick you quickly!
+Setting up a powerful environment to work at the forefront of AI is not as easy as I'd like. It can be challenging. But I really hope these instructions are bullet-proof!
+
+If you hit problems, please don't hesitate to reach out. I am here to get you up and running quickly. There's nothing worse than feeling _stuck_. Message me, email me or LinkedIn message me and I will unstick you quickly!
 
 Email: ed@edwarddonner.com  
 LinkedIn: https://www.linkedin.com/in/eddonner/  
 
-I use a platform called Anaconda to set up your environment. It's a powerful tool that builds a complete science environment. Anaconda ensures that you're working with the right version of Python and all your packages are compatible with mine, even if our systems are completely different. It takes more time to set up, and it uses more hard drive space (5+ GB) but it's very reliable once its working.
-
-Having said that: if you have any problems with Anaconda, I've provided an alternative approach. It's faster and simpler and should have you running quickly, with less of a guarantee around compatibility.
+_If you're looking at this in Cursor, please right click on the filename in the Explorer on the left, and select "Open preview", to view the formatted version._
 
 ### Before we begin - Heads up!
 
@@ -26,9 +26,7 @@ There are 4 common gotchas to developing on Windows to be aware of:
 
 ### Part 1: Clone the Repo
 
-This gets you a local copy of the code on your box.
-
-1. **Install Git** (if not already installed):
+T1. **Install Git** (if not already installed):
 
 - Download Git from https://git-scm.com/download/win
 - Run the installer and follow the prompts, using default options (press OK lots of times!)
@@ -53,146 +51,99 @@ cd C:\Users\YourUsername\Documents\Projects
 
 Enter this in the command prompt in the Projects folder:
 
-`git clone https://github.com/ed-donner/llm_engineering.git`
+`git clone https://github.com/ed-donner/agents.git`
 
-This creates a new directory `llm_engineering` within your Projects folder and downloads the code for the class. Do `cd llm_engineering` to go into it. This `llm_engineering` directory is known as the "project root directory".
+This creates a new directory `agents` within your Projects folder and downloads the code for the class. Do `cd agents` to go into it. This `agents` directory is known as the "project root directory".
 
-### Part 2: Install Anaconda environment
 
-If this Part 2 gives you any problems, there is an alternative Part 2B below that can be used instead.
+### Part 2: Install Cursor
 
-1. **Install Anaconda:**
+1. Visit cursor at https://www.cursor.com/
+2. Click Sign In on the top right, then Sign Up, to create your account
+3. Download and follow its instructions to install and open Cursor
 
-- Download Anaconda from https://docs.anaconda.com/anaconda/install/windows/
-- Run the installer and follow the prompts. Note that it takes up several GB and take a while to install, but it will be a powerful platform for you to use in the future.
+After you start Cursor, you can pick the defaults for all its questions. When it's time to open the project in Cursor, go into the directory called "Agents" and select Open, and Cursor should open with each of the weeks in the file explorer on the left.
 
-2. **Set up the environment:**
+### Part 3: The amazing `uv`
 
-- Open **Anaconda Prompt** (search for it in the Start menu)
-- Navigate to the "project root directory" by entering something like `cd C:\Users\YourUsername\Documents\Projects\llm_engineering` using the actual path to your llm_engineering project root directory. Do a `dir` and check you can see subdirectories for each week of the course.
-- Create the environment: `conda env create -f environment.yml`
-- Wait for a few minutes for all packages to be installed - in some cases, this can literally take 20-30 minutes if you've not used Anaconda before, and even longer depending on your internet connection. Important stuff is happening! If this runs for more than 1 hour 15 mins, or gives you other problems, please go to Part 2B instead.
-- You have now built an isolated, dedicated AI environment for engineering LLMs, running vector datastores, and so much more! You now need to **activate** it using this command: `conda activate llms`  
+For this course, I'm using uv, the blazingly fast package manager. It's really taken off in the Data Science world -- and for good reason.
 
-You should see `(llms)` in your prompt, which indicates you've activated your new environment.
+It's fast and reliable. You're going to love it!
 
-3. **Start Jupyter Lab:**
+Follow the instructions here to install uv - I recommend using the Standalone Installer approach at the very top:
 
-- In the Anaconda Prompt, from within the `llm_engineering` folder, type: `jupyter lab`
+https://docs.astral.sh/uv/getting-started/installation/
 
-...and Jupyter Lab should open up in a browser. If you've not seen Jupyter Lab before, I'll explain it in a moment! Now close the jupyter lab browser tab, and close the Anaconda prompt, and move on to Part 3.
+Then within Cursor, select View >> Terminal, to see a Terminal window within Cursor.  
+Type `pwd` to see the current directory, and check you are in the 'agents' directory - like `C:\Users\YourUsername\Documents\Projects\agents` or similar
 
-### Part 2B - Alternative to Part 2 if Anaconda gives you trouble
+And now simply run:  
+`uv sync`  
+And marvel at the speed and reliability! If necessary, uv should install python 3.12, and then it should install all the packages.
 
-1. **Open Command Prompt**
+### Part 4: OpenAI Key
 
-Press Win + R, type `cmd`, and press Enter  
+This is OPTIONAL - there's no need to spend money on APIs if you don't want to.
 
-Run `python --version` to find out which python you're on.  
-Ideally you'd be using a version of Python 3.11, so we're completely in sync.  
-I believe Python 3.12 works also, but (as of Feb 2025) Python 3.13 does **not** yet work as several Data Science dependencies are not yet ready for Python 3.13.  
-If you need to install Python or install another version, you can download it here:  
-https://www.python.org/downloads/
+But it is strongly recommended for the best performance of your Agentic system.
 
-2. Navigate to the "project root directory" by entering something like `cd C:\Users\YourUsername\Documents\Projects\llm_engineering` using the actual path to your llm_engineering project root directory. Do a `dir` and check you can see subdirectories for each week of the course.  
-
-Then, create a new virtual environment with this command:  
-`python -m venv llms`
-
-3. Activate the virtual environment with  
-`llms\Scripts\activate`
-You should see (llms) in your command prompt, which is your sign that things are going well.
-
-4. Run `python -m pip install --upgrade pip` followed by `pip install -r requirements.txt`  
-This may take a few minutes to install.  
-If you see an error like this:
-
-> Microsoft Visual C++ 14.0 or greater is required. Get it with "Microsoft C++ Build Tools": [https://visualstudio.microsoft.com/visual-cpp-build-tools/](https://visualstudio.microsoft.com/visual-cpp-build-tools/)
-
-Then please follow the link and install Microsoft C++ Build Tools. A student also mentioned that [these instructions](https://github.com/bycloudai/InstallVSBuildToolsWindows) might be helpful for people on Windows 11.   
-
-In the very unlikely event that this step doesn't go well, you should try the bullet-proof (but slower) version:  
-`pip install --retries 5 --timeout 15 --no-cache-dir --force-reinstall -r requirements.txt`
-
-6. **Start Jupyter Lab:**
-
-From within the `llm_engineering` folder, type: `jupyter lab`  
-...and Jupyter Lab should open up, ready for you to get started. Open the `week1` folder and double click on `day1.ipynb`. Success! Now close down jupyter lab and move on to Part 3.
-
-If there are any problems, contact me!
-
-### Part 3 - OpenAI key (OPTIONAL but recommended)
-
-Particularly during weeks 1 and 2 of the course, you'll be writing code to call the APIs of Frontier models (models at the forefront of AI).
-
-For week 1, you'll only need OpenAI, and you can add the others if you wish later on.
+If you have concerns about API costs and would prefer to use cheap or free alternatives, please see [this guide](guides/api_costs_and_alternatives)
 
 1. Create an OpenAI account if you don't have one by visiting:  
 https://platform.openai.com/
 
-2. OpenAI asks for a minimum credit to use the API. For me in the US, it's \$5. The API calls will spend against this \$5. On this course, we'll only use a small portion of this. I do recommend you make the investment as you'll be able to put it to excellent use. But if you'd prefer not to pay for the API, I give you an alternative in the course using Ollama.
+2. OpenAI asks for a minimum credit to use the API. For me in the US, it's \$5. The API calls will spend against this \$5. On this course, we'll only use a small portion of this. I do recommend you make the investment as you'll be able to put it to excellent use. Do keep in mind: Agentic systems are less predictable than traditional software engineering, and that's usually the intention! It also means there are some risks when it comes to costs. Set a fixed budget for your LLMs, and be sure to monitor costs carefully.
 
 You can add your credit balance to OpenAI at Settings > Billing:  
 https://platform.openai.com/settings/organization/billing/overview
 
-I recommend you disable the automatic recharge!
+I recommend you **disable** the automatic recharge!
 
 3. Create your API key
 
 The webpage where you set up your OpenAI key is at https://platform.openai.com/api-keys - press the green 'Create new secret key' button and press 'Create secret key'. Keep a record of the API key somewhere private; you won't be able to retrieve it from the OpenAI screens in the future. It should start `sk-proj-`.
 
-In week 2 we will also set up keys for Anthropic and Google, which you can do here when we get there.  
+We will also set up keys for Anthropic and Google, which you can do here when we get there.  
 - Claude API at https://console.anthropic.com/ from Anthropic
-- Gemini API at https://ai.google.dev/gemini-api from Google
+- Gemini API at https://aistudio.google.com/ from Google
 
-Later in the course you'll be using the fabulous HuggingFace platform; an account is available for free at https://huggingface.co - you can create an API token from the Avatar menu >> Settings >> Access Tokens.
+During the course, I'll also direct you to set up a number of other APIs that are free or very low cost.
 
-And in Week 6/7 you'll be using the terrific Weights & Biases at https://wandb.ai to watch over your training batches. Accounts are also free, and you can set up a token in a similar way.
+### Part 5: The `.env` file
 
-### PART 4 - .env file
+When you have the key, it's time to create your `.env` file:
 
-When you have these keys, please create a new file called `.env` in your project root directory. The filename needs to be exactly the four characters ".env" rather than "my-keys.env" or ".env.txt". Here's how to do it:
+1. In Cursor, go to the File menu and select "New Text File".
 
-1. Open the Notepad (Windows + R to open the Run box, enter `notepad`)
+Type the following, being SUPER careful that you get this exactly right:
 
-2. In the Notepad, type this, replacing xxxx with your API key (starting `sk-proj-`).
+`OPENAI_API_KEY=`
 
-```
-OPENAI_API_KEY=xxxx
-```
+And then after the equals sign, paste in your key from OpenAI. So after you've completed this, it should look like this:
+
+`OPENAI_API_KEY=sk-proj-lots_of_characters_here`
+
+But obviously the stuff to the right of the equals sign needs to match your key exactly.
+
+Some people have got stuck because they've mistyped the start of the key as OPEN_API_KEY (missing the letters AI) and some people have the value as `sk-proj-sk-proj-...`.
 
 If you have other keys, you can add them too, or come back to this in future weeks:  
 ```
 GOOGLE_API_KEY=xxxx
 ANTHROPIC_API_KEY=xxxx
 DEEPSEEK_API_KEY=xxxx
-HF_TOKEN=xxxx
 ```
 
-Double check there are no spaces before or after the `=` sign, and no spaces at the end of the key.
+2. Now go to File menu >> Save As.. and save the file in the directory called `agents` (also known as the project root directory) with the name `.env`  
 
-3. Go to File > Save As. In the "Save as type" dropdown, select All Files. In the "File name" field, type exactly **.env** as the filename. Choose to save this in the project root directory (the folder called `llm_engineering`) and click Save.
+Here's the thing: it **needs** to go in the directory named `agents` and it **needs** to be named precisely `.env` -- not "env" and not "env.txt" or ".env.txt" but exactly the 4 characters `.env` otherwise it won't work!! 
 
-4. Navigate to the folder where you saved the file in Explorer and ensure it was saved as ".env" not ".env.txt" - if necessary rename it to ".env" -  you might need to ensure that "Show file extensions" is set to "On" so that you see the file extensions. Message or email me if that doesn't make sense!
+Hopefully you're now the proud owner of your very own `.env` file with your key inside, and you're ready for action.
 
-This file won't appear in Jupyter Lab because jupyter hides files starting with a dot. This file is listed in the `.gitignore` file, so it won't get checked in and your keys stay safe.
+## And that's it!!
 
-### Part 5 - Showtime!!
+To get started in Cursor, open the directory called `1_foundations` in the explorer on the left, and double click on `1_lab1.ipynb` to launch the first lab. Click where it says "Select Kernel" near the top right, and select the option called `.venv (Python 3.12.9)` or similar, which should be the first choice or the most prominent choice. Then click in the first cell with code, and press Shift + Enter to execute it.
 
-- Open **Anaconda Prompt** (search for it in the Start menu) if you used Anaconda, otherwise open a Powershell if you used the alternative approach in Part 2B
-  
-- Navigate to the "project root directory" by entering something like `cd C:\Users\YourUsername\Documents\Projects\llm_engineering` using the actual path to your llm_engineering project root directory. Do a `dir` and check you can see subdirectories for each week of the course.
-
-- Activate your environment with `conda activate llms` if you used Anaconda or `llms\Scripts\activate` if you used the alternative approach in Part 2B
-
-- You should see (llms) in your prompt which is your sign that all is well. And now, type: `jupyter lab` and Jupyter Lab should open up, ready for you to get started. Open the `week1` folder and double click on `day1.ipynb`. 
-
-And you're off to the races!
-
-Note that any time you start jupyter lab in the future, you'll need to follow these Part 5 instructions to start it from within the `llm_engineering` directory with the `llms` environment activated.
-
-For those new to Jupyter Lab / Jupyter Notebook, it's a delightful Data Science environment where you can simply hit shift+return in any cell to run it; start at the top and work your way down! There's a notebook in the week1 folder with a [Guide to Jupyter Lab](week1/Guide%20to%20Jupyter.ipynb), and an [Intermediate Python](week1/Intermediate%20Python.ipynb) tutorial, if that would be helpful. When we move to Google Colab in Week 3, you'll experience the same interface for Python runtimes in the cloud. 
-
-If you have any problems, I've included a notebook in week1 called [troubleshooting.ipynb](week1/troubleshooting.ipynb) to figure it out.
+If you have any problems, I've included a Guide called [troubleshooting.ipynb](setup/troubleshooting.ipynb) to figure it out.
 
 Please do message me or email me at ed@edwarddonner.com if this doesn't work or if I can help with anything. I can't wait to hear how you get on.

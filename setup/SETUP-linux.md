@@ -1,19 +1,21 @@
-# LLM Engineering - Master AI and LLMs
+## Master AI Agentic Engineering -  build autonomous AI Agents
 
-## Setup instructions for Linux
+# Setup instructions for Linux
 
 Welcome, Linux people!
 
-I should reveal that I had ChatGPT make this document based on the Mac instructions, but then I went through and checked and tweaked some sections. If any of these instructions don't work for your distro, please do reach out and let me know - we'll figure it out, then I'll update the instructions for the future.
+Setting up a powerful environment to work at the forefront of AI is not as easy as I'd like. It can be challenging. But I really hope these instructions are bullet-proof!
 
-___
-
-Setting up a powerful environment to work at the forefront of AI requires some effort, but these instructions should guide you smoothly. If you encounter any issues, don't hesitate to reach out to me. I'm here to ensure you get set up without hassle.
+If you hit problems, please don't hesitate to reach out. I am here to get you up and running quickly. There's nothing worse than feeling _stuck_. Message me, email me or LinkedIn message me and I will unstick you quickly!
 
 Email: ed@edwarddonner.com  
 LinkedIn: https://www.linkedin.com/in/eddonner/  
 
-For this setup, we'll use Anaconda to create a reliable environment for your AI work. Alternatively, I've provided a lighter option if you prefer to avoid Anaconda. Let's get started!
+_If you're looking at this in Cursor, please right click on the filename in the Explorer on the left, and select "Open preview", to view the formatted version._
+
+### Before we begin
+
+One "gotcha" to keep in mind: if you run anti-virus software, VPN or a Firewall, it might interfere with installations or network access. Please temporarily disable if you have problems.
 
 ### Part 1: Clone the Repo
 
@@ -41,174 +43,98 @@ cd ~/Projects
 3. **Clone the repository:**
 
 Run the following command in your terminal:
-`git clone https://github.com/ed-donner/llm_engineering.git`
+`git clone https://github.com/ed-donner/agents.git`
 
-This creates a new directory `llm_engineering` within your Projects folder and downloads the course code. Use `cd llm_engineering` to enter the directory. This is your "project root directory."
+This creates a new directory `agents` within your Projects folder and downloads the course code. Use `cd agents` to enter the directory. This is your "project root directory."
 
-### Part 2: Install Anaconda environment
+### Part 2: Install Cursor
 
-If this Part 2 gives you any trouble, refer to the alternative Part 2B below.
+1. Visit cursor at https://www.cursor.com/
+2. Click Sign In on the top right, then Sign Up, to create your account
+3. Download and follow its instructions to install and open Cursor
 
-1. **Install Anaconda:**
+After you start Cursor, you can pick the defaults for all its questions. When it's time to open the project in Cursor, go into the directory called "Agents" and select Open, and Cursor should open with each of the weeks in the file explorer on the left.
 
-- Download the Linux installer from https://www.anaconda.com/download.
-- Open a terminal and navigate to the folder containing the downloaded `.sh` file.
-- Run the installer: `bash Anaconda3*.sh` and follow the prompts. Note: This requires about 5+ GB of disk space.
+### Part 3: The amazing `uv`
 
-2. **Set up the environment:**
+For this course, I'm using uv, the blazingly fast package manager. It's really taken off in the Data Science world -- and for good reason.
 
-- Open a terminal and navigate to the "project root directory" using:
-`cd ~/Projects/llm_engineering` (adjust the path as necessary).
-- Run `ls` to confirm the presence of subdirectories for each week of the course.
-- Create the environment: `conda env create -f environment.yml`
+It's fast and reliable. You're going to love it!
 
-This may take several minutes (even up to an hour for new Anaconda users). If it takes longer or errors occur, proceed to Part 2B.
+Follow the instructions here to install uv - I recommend using the Standalone Installer approach at the very top:
 
-- Activate the environment: `conda activate llms`.
+https://docs.astral.sh/uv/getting-started/installation/
 
-You should see `(llms)` in your prompt, indicating successful activation.
+Then within Cursor, select View >> Terminal, to see a Terminal window within Cursor.  
+Type `pwd` to see the current directory, and check you are in the 'agents' directory. For me it is `/Users/ed/projects/agents` and it should be something similar for you.
 
-In some distributions this may be required so that the llms environment is visible in jupyter lab:
+And now simply run:  
+`uv sync`  
+And marvel at the speed and reliability! If necessary, uv should install python 3.12, and then it should install all the packages.
 
-`conda install ipykernel`  
-`python -m ipykernel install --user --name=llmenv`  
+### Part 4: OpenAI Key
 
-3. **Start Jupyter Lab:**
+This is OPTIONAL - there's no need to spend money on APIs if you don't want to.
 
-From the `llm_engineering` folder, run: `jupyter lab`.
+But it is strongly recommended for the best performance of your Agentic system.
 
-Jupyter Lab should open in your browser. Close it after confirming it works, and proceed to Part 3.
+If you have concerns about API costs and would prefer to use cheap or free alternatives, please see [this guide](guides/api_costs_and_alternatives)
 
-### Part 2B - Alternative to Part 2 if Anaconda gives you trouble
-
-1. **Install Python 3.11 (if not already installed):**
-
-- Debian/Ubuntu: `sudo apt update && sudo apt install python3.11`
-- Fedora: `sudo dnf install python3.11`
-- Arch: `sudo pacman -S python`
-
-2. **Navigate to the project root directory:**
-
-Use `cd ~/Projects/llm_engineering` and verify the folder contents with `ls`.
-
-3. **Create a virtual environment:**
-
-Run: `python3.11 -m venv llms`
-
-4. **Activate the virtual environment:**
-
-Use: `source llms/bin/activate`
-
-Your prompt should now display `(llms)`, indicating the environment is active.
-
-5. **Install required packages:**
-
-Run: `python -m pip install --upgrade pip` followed by `pip install -r requirements.txt`.
-
-If issues occur, try the fallback:
-`pip install --retries 5 --timeout 15 --no-cache-dir --force-reinstall -r requirements.txt`
-
-###### Arch users:
-
-Some updates break dependencies. Most notably, numpy, scipy and gensim. To troubleshoot this, you can try many commands:
-
-`sudo pacman -S python-numpy python-pandas python-scipy` This is not recommended, as pacman has no integration with pip (as far as I know)
-
-Another possible solution if having build conflicts, is to update:
-
-`sudo pacman -S gcc gcc-fortran python-setuptools python-wheel`
-
-*Note:* gensim is broken if you have an updated version of scipy. You can either pin scipy to an older version, or 
-erase gensim from the requirements.txt for the moment. (See: https://aur.archlinux.org/packages/python-gensim)
-
-Lastly, so that the kernel is visible after step (6) in jupyter lab :
-`python -m ipykernel install --user --name=llmenv`
-`ipython kernel install --user --name=llmenv`
-
-
-6. **Start Jupyter Lab:**
-
-From the `llm_engineering` folder, run: `jupyter lab`.
-
-
-### Part 3 - OpenAI key (OPTIONAL but recommended)
-
-Particularly during weeks 1 and 2 of the course, you'll be writing code to call the APIs of Frontier models (models at the forefront of AI).
-
-For week 1, you'll only need OpenAI, and you can add the others if you wish later on.
-
-1. Create an OpenAI account if you don't have one by visiting:
+1. Create an OpenAI account if you don't have one by visiting:  
 https://platform.openai.com/
 
-2. OpenAI asks for a minimum credit to use the API. For me in the US, it's \$5. The API calls will spend against this \$5. On this course, we'll only use a small portion of this. I do recommend you make the investment as you'll be able to put it to excellent use. But if you'd prefer not to pay for the API, I give you an alternative in the course using Ollama.
+2. OpenAI asks for a minimum credit to use the API. For me in the US, it's \$5. The API calls will spend against this \$5. On this course, we'll only use a small portion of this. I do recommend you make the investment as you'll be able to put it to excellent use. Do keep in mind: Agentic systems are less predictable than traditional software engineering, and that's usually the intention! It also means there are some risks when it comes to costs. Set a fixed budget for your LLMs, and be sure to monitor costs carefully.
 
 You can add your credit balance to OpenAI at Settings > Billing:  
 https://platform.openai.com/settings/organization/billing/overview
 
-I recommend you disable the automatic recharge!
+I recommend you **disable** the automatic recharge!
 
 3. Create your API key
 
 The webpage where you set up your OpenAI key is at https://platform.openai.com/api-keys - press the green 'Create new secret key' button and press 'Create secret key'. Keep a record of the API key somewhere private; you won't be able to retrieve it from the OpenAI screens in the future. It should start `sk-proj-`.
 
-In week 2 we will also set up keys for Anthropic and Google, which you can do here when we get there.  
+We will also set up keys for Anthropic and Google, which you can do here when we get there.  
 - Claude API at https://console.anthropic.com/ from Anthropic
-- Gemini API at https://ai.google.dev/gemini-api from Google
+- Gemini API at https://aistudio.google.com/ from Google
 
-Later in the course you'll be using the fabulous HuggingFace platform; an account is available for free at https://huggingface.co - you can create an API token from the Avatar menu >> Settings >> Access Tokens.
+During the course, I'll also direct you to set up a number of other APIs that are free or very low cost.
 
-And in Week 6/7 you'll be using the terrific Weights & Biases at https://wandb.ai to watch over your training batches. Accounts are also free, and you can set up a token in a similar way.
+### Part 5: The `.env` file
 
-### PART 4 - .env file
+When you have the key, it's time to create your `.env` file:
 
-When you have these keys, please create a new file called `.env` in your project root directory. The filename needs to be exactly the four characters ".env" rather than "my-keys.env" or ".env.txt". Here's how to do it:
+1. In Cursor, go to the File menu and select "New Text File".
 
-1. Open Terminal (Applications > Utilities > Terminal)
+Type the following, being SUPER careful that you get this exactly right:
 
-2. Navigate to the "project root directory" using `cd ~/Documents/Projects/llm_engineering` (replace this path with the actual path to the llm_engineering directory, your locally cloned version of the repo).
+`OPENAI_API_KEY=`
 
-3. Create the .env file with
+And then after the equals sign, paste in your key from OpenAI. So after you've completed this, it should look like this:
 
-nano .env
+`OPENAI_API_KEY=sk-proj-lots_of_characters_here`
 
-4. Then type your API keys into nano, replacing xxxx with your API key (starting `sk-proj-`).
+But obviously the stuff to the right of the equals sign needs to match your key exactly.
 
-```
-OPENAI_API_KEY=xxxx
-```
+Some people have got stuck because they've mistyped the start of the key as OPEN_API_KEY (missing the letters AI) and some people have the value as `sk-proj-sk-proj-...`.
 
 If you have other keys, you can add them too, or come back to this in future weeks:  
 ```
 GOOGLE_API_KEY=xxxx
 ANTHROPIC_API_KEY=xxxx
 DEEPSEEK_API_KEY=xxxx
-HF_TOKEN=xxxx
 ```
 
-5. Save the file:
+2. Now go to File menu >> Save As.. and save the file in the directory called `agents` (also known as the project root directory) with the name `.env`  
 
-Control + O  
-Enter (to confirm save the file)  
-Control + X to exit the editor
+Here's the thing: it **needs** to go in the directory named `agents` and it **needs** to be named precisely `.env` -- not "env" and not "env.txt" or ".env.txt" but exactly the 4 characters `.env` otherwise it won't work!! 
 
-6. Use this command to list files in your project root directory:
+Hopefully you're now the proud owner of your very own `.env` file with your key inside, and you're ready for action.
 
-`ls -a`
+## And that's it!!
 
-And confirm that the `.env` file is there.
+To get started in Cursor, open the directory called `1_foundations` in the explorer on the left, and double click on `1_lab1.ipynb` to launch the first lab. Click where it says "Select Kernel" near the top right, and select the option called `.venv (Python 3.12.9)` or similar, which should be the first choice or the most prominent choice. Then click in the first cell with code, and press Shift + Enter to execute it.
 
-This file won't appear in Jupyter Lab because jupyter hides files starting with a dot. This file is listed in the `.gitignore` file, so it won't get checked in and your keys stay safe.
+If you have any problems, I've included a Guide called [troubleshooting.ipynb](setup/troubleshooting.ipynb) to figure it out.
 
-### Part 5 - Showtime!!
-
-1. Open a terminal.
-2. Navigate to the "project root directory" using:
-`cd ~/Projects/llm_engineering`.
-3. Activate your environment:
-   - If you used Anaconda: `conda activate llms`
-   - If you used the alternative: `source llms/bin/activate`
-
-You should see `(llms)` in your prompt. Run: `jupyter lab` to get started.
-
-Enjoy your journey into mastering AI and LLMs!
-
+Please do message me or email me at ed@edwarddonner.com if this doesn't work or if I can help with anything. I can't wait to hear how you get on.

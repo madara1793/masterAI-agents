@@ -49,7 +49,6 @@ class Diagnostics:
         self._step2_check_files()
         self._step3_git_repo()
         self._step4_check_env_file()
-        self._step5_anaconda_check()
         self._step6_virtualenv_check()
         self._step7_network_connectivity()
         self._step8_environment_variables()
@@ -119,6 +118,7 @@ class Diagnostics:
         self.log("\n===== File System Information =====")
         try:
             current_dir = os.getcwd()
+            parent_dir = os.path.dirname(current_dir)
             self.log(f"Current Directory: {current_dir}")
 
             # Check write permissions
@@ -130,9 +130,9 @@ class Diagnostics:
             except Exception as e:
                 self._log_error(f"No write permission in current directory: {e}")
 
-            self.log("\nFiles in Current Directory:")
+            self.log("\nFiles in Parent Directory:")
             try:
-                for item in sorted(os.listdir(current_dir)):
+                for item in sorted(os.listdir(parent_dir)):
                     self.log(f" - {item}")
             except Exception as e:
                 self._log_error(f"Cannot list directory contents: {e}")
@@ -203,33 +203,11 @@ class Diagnostics:
         except Exception as e:
             self._log_error(f"Environment file check failed: {e}")
 
-    def _step5_anaconda_check(self):
-        self.log("\n===== Anaconda Environment Check =====")
-        try:
-            conda_prefix = os.environ.get('CONDA_PREFIX')
-            if conda_prefix:
-                self.log("Anaconda environment is active:")
-                self.log(f"Environment Path: {conda_prefix}")
-                self.log(f"Environment Name: {os.path.basename(conda_prefix)}")
-
-                conda_exe = os.environ.get('CONDA_EXE', 'conda')
-                result = subprocess.run([conda_exe, '--version'],
-                                        stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
-                if result.returncode == 0:
-                    self.log(f"Conda Version: {result.stdout.strip()}")
-                else:
-                    self._log_warning("Could not determine Conda version")
-
-                self._check_python_packages()
-            else:
-                self.log("No active Anaconda environment detected")
-        except Exception as e:
-            self._log_error(f"Anaconda environment check failed: {e}")
-
     def _step6_virtualenv_check(self):
         self.log("\n===== Virtualenv Check =====")
         try:
             virtual_env = os.environ.get('VIRTUAL_ENV')
+            virtual_env_name = os.path.basename(virtual_env)
             if virtual_env:
                 self.log("Virtualenv is active:")
                 self.log(f"Environment Path: {virtual_env}")
@@ -239,8 +217,10 @@ class Diagnostics:
             else:
                 self.log("No active virtualenv detected")
 
-            if not virtual_env and not os.environ.get('CONDA_PREFIX'):
-                self._log_warning("Neither virtualenv nor Anaconda environment is active")
+            if not virtual_env:
+                self._log_warning("uv virtualenv not detected")
+            elif virtual_env_name != '.venv':
+                self._log_warning(f"Virtualenv name is not '.venv': {virtual_env_name}")
         except Exception as e:
             self._log_error(f"Virtualenv check failed: {e}")
 
@@ -249,7 +229,7 @@ class Diagnostics:
         self.log(f"Python Version: {sys.version}")
         self.log(f"Python Executable: {sys.executable}")
 
-        required_packages = ['openai', 'python-dotenv', 'requests', 'gradio', 'transformers']
+        required_packages = ['openai', 'python-dotenv', 'requests', 'gradio', 'openai-agents']
 
         try:
             import pkg_resources
@@ -352,7 +332,7 @@ class Diagnostics:
                 for path in pythonpath.split(os.pathsep):
                     self.log(f" - {path}")
             else:
-                self.log("\nPYTHONPATH is not set.")
+                self.log("\nPYTHONPATH is not set, as expected.")
 
             self.log("\nPython sys.path:")
             for path in sys.path:
@@ -360,7 +340,7 @@ class Diagnostics:
 
             # Check OPENAI_API_KEY
             from dotenv import load_dotenv
-            load_dotenv()
+            load_dotenv(override=True)
             api_key = os.environ.get('OPENAI_API_KEY')
             if api_key:
                 self.log("OPENAI_API_KEY is set after calling load_dotenv()")

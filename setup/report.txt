@@ -1,0 +1,93 @@
+Starting diagnostics at 2025-04-15 16:23:38
+
+===== System Information =====
+Operating System: Darwin
+MacOS Version: 15.3.1
+Architecture: ('64bit', '')
+Machine: arm64
+Processor: arm
+Total RAM: 32.00 GB
+Available RAM: 9.34 GB
+Free Disk Space: 115.68 GB
+
+===== File System Information =====
+Current Directory: /Users/ed/projects/agents/setup
+Write permission: OK
+
+Files in Parent Directory:
+ - .DS_Store
+ - .env
+ - .git
+ - .gitignore
+ - .python-version
+ - .venv
+ - .vscode
+ - 1_foundations
+ - 2_openai
+ - 3_crew
+ - 4_langgraph
+ - 5_autogen
+ - 6_mcp
+ - LICENSE
+ - README.md
+ - assets
+ - guides
+ - pyproject.toml
+ - setup
+ - uv.lock
+
+===== Git Repository Information =====
+Git Repository Root: /Users/ed/projects/agents
+Current Commit: 3482056d804895e9c09f4325a80b916e960629b7
+Remote Origin: git@github.com:ed-donner/agents.git
+
+===== Environment File Check =====
+.env file exists at: /Users/ed/projects/agents/.env
+OPENAI_API_KEY found in .env file
+
+===== Virtualenv Check =====
+Virtualenv is active:
+Environment Path: /Users/ed/projects/agents/.venv
+Environment Name: .venv
+
+Python Environment:
+Python Version: 3.12.9 (main, Mar 17 2025, 21:36:21) [Clang 20.1.0 ]
+Python Executable: /Users/ed/projects/agents/.venv/bin/python
+
+Required Package Versions:
+openai: 1.70.0
+python-dotenv: 1.1.0
+requests: 2.32.3
+gradio: 5.23.3
+openai-agents: 0.0.8
+
+===== Network Connectivity Check =====
+SSL Version: OpenSSL 3.0.16 11 Feb 2025
+✓ Connected to https://www.google.com
+  Response time: 0.09s
+
+Performing bandwidth test using speedtest-cli...
+Download speed: 49.06 Mbps
+Upload speed: 17.28 Mbps
+
+===== Environment Variables Check =====
+
+PYTHONPATH is not set, as expected.
+
+Python sys.path:
+ - /Users/ed/.local/share/uv/python/cpython-3.12.9-macos-aarch64-none/lib/python312.zip
+ - /Users/ed/.local/share/uv/python/cpython-3.12.9-macos-aarch64-none/lib/python3.12
+ - /Users/ed/.local/share/uv/python/cpython-3.12.9-macos-aarch64-none/lib/python3.12/lib-dynload
+ - 
+ - /Users/ed/projects/agents/.venv/lib/python3.12/site-packages
+ - /Users/ed/projects/agents/.venv/lib/python3.12/site-packages/setuptools/_vendor
+OPENAI_API_KEY is set after calling load_dotenv()
+
+===== Additional Diagnostics =====
+Temp directory is writable: /var/folders/tl/4_dvbgtd2z142wksgpr03g3h0000gn/T
+
+✅ All diagnostics passed successfully!
+
+
+Completed diagnostics at 2025-04-15 16:24:05
+
