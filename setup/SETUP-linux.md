@@ -78,7 +78,7 @@ This is OPTIONAL - there's no need to spend money on APIs if you don't want to.
 
 But it is strongly recommended for the best performance of your Agentic system.
 
-If you have concerns about API costs and would prefer to use cheap or free alternatives, please see [this guide](guides/api_costs_and_alternatives)
+If you have concerns about API costs and would prefer to use cheap or free alternatives, please see [this guide](../guides/9_ai_apis_and_ollama.ipynb)
 
 1. Create an OpenAI account if you don't have one by visiting:  
 https://platform.openai.com/
@@ -135,6 +135,6 @@ Hopefully you're now the proud owner of your very own `.env` file with your key 
 
 To get started in Cursor, open the directory called `1_foundations` in the explorer on the left, and double click on `1_lab1.ipynb` to launch the first lab. Click where it says "Select Kernel" near the top right, and select the option called `.venv (Python 3.12.9)` or similar, which should be the first choice or the most prominent choice. Then click in the first cell with code, and press Shift + Enter to execute it.
 
-If you have any problems, I've included a Guide called [troubleshooting.ipynb](setup/troubleshooting.ipynb) to figure it out.
+If you have any problems, I've included a Guide called [troubleshooting.ipynb](troubleshooting.ipynb) to figure it out.
 
 Please do message me or email me at ed@edwarddonner.com if this doesn't work or if I can help with anything. I can't wait to hear how you get on.
