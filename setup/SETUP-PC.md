@@ -38,13 +38,13 @@ T1. **Install Git** (if not already installed):
 3. **Navigate to your projects folder:**
 
 If you have a specific folder for projects, navigate to it using the cd command. For example:  
-`cd C:\Users\YourUsername\Documents\Projects`  
+`cd C:\Users\YourUsername\projects`  
 Replacing YourUsername with your actual Windows user
 
 If you don't have a projects folder, you can create one:
 ```
-mkdir C:\Users\YourUsername\Documents\Projects
-cd C:\Users\YourUsername\Documents\Projects
+mkdir C:\Users\YourUsername\projects
+cd C:\Users\YourUsername\projects
 ```
 
 4. **Clone the repository:**
@@ -62,7 +62,14 @@ This creates a new directory `agents` within your Projects folder and downloads 
 2. Click Sign In on the top right, then Sign Up, to create your account
 3. Download and follow its instructions to install and open Cursor
 
-After you start Cursor, you can pick the defaults for all its questions. When it's time to open the project in Cursor, go into the directory called "Agents" and select Open, and Cursor should open with each of the weeks in the file explorer on the left.
+After you start Cursor, you can pick the defaults for all its questions.  
+When it's time to open the project in Cursor:  
+1. Launch Cursor, if it's not already running  
+2. File menu >> New Window  
+3. Click "Open project"  
+4. Navigate into the project root directory called `agents` (probably within projects) and click Open
+
+Now Cursor should open with each of the weeks in the file explorer on the left.
 
 ### Part 3: The amazing `uv`
 
@@ -143,6 +150,12 @@ Hopefully you're now the proud owner of your very own `.env` file with your key 
 ## And that's it!!
 
 To get started in Cursor, open the directory called `1_foundations` in the explorer on the left, and double click on `1_lab1.ipynb` to launch the first lab. Click where it says "Select Kernel" near the top right, and select the option called `.venv (Python 3.12.9)` or similar, which should be the first choice or the most prominent choice. Then click in the first cell with code, and press Shift + Enter to execute it.
+
+After you click "Select Kernel", if there is no option like `.venv (Python 3.12.9)` then please do the following:  
+1. From the Cursor menu, choose Settings >> VSCode Settings  
+2. In the Settings search bar, type "venv"  
+3. In the field "Path to folder with a list of Virtual Environments" put the path to the project root, like C:\Users\username\projects\agents
+And then try again.
 
 If you have any problems, I've included a Guide called [troubleshooting.ipynb](troubleshooting.ipynb) to figure it out.
 
