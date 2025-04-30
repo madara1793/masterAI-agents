@@ -24,6 +24,13 @@ Perhaps famous last words: but I really, truly hope that I've put together an en
 
 Any problems, please do contact me.
 
+### Important troubleshooting notes for CrewAI week (Week 3)
+
+It's possible that you will need to run this command in a Cursor Terminal in order to run the Crew commands:    
+`uv tool install crewai`  
+Windows users: there's a new issue that was recently introduced by one of Crew's libraries. Until this is fixed, you might get a "unicode" error when you try to run `crewai create crew`.  If that happens, please try running this command in the Terminal first:  
+`$env:PYTHONUTF8 = "1"`
+
 ### Super useful resources
 
 - The course [resources](https://edwarddonner.com/2025/04/21/the-complete-agentic-ai-engineering-course/) with videos
