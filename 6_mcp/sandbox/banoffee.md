@@ -1,26 +1,36 @@
 # Banoffee Pie Recipe
 
-An easy and delicious Banoffee pie with a buttery pastry, rich dulce de leche, ripe bananas, and whipped cream.
-
 ## Ingredients
-### For the Pastry:
-- 100g butter (chilled, plus extra for greasing)
-- 200g plain flour
-- 1 medium egg (separated)
-- 1 tbsp golden caster sugar
+- **For the Base:**  
+  - 200g digestive biscuits  
+  - 100g unsalted butter, melted  
 
-### For the Filling:
-- 4 sliced bananas
-- 394g caramel (or dulce de leche)
-- 300ml double cream
-- Dark chocolate (for garnish, optional)
+- **For the Filling:**  
+  - 397g can of sweetened condensed milk  
+  - 3 large ripe bananas  
+  - 300ml double cream  
+  - 2 tbsp icing sugar  
+  - Grated chocolate (for topping)  
 
-## Method
-1. **Make the Pastry:**  Combine the butter and flour in a food processor until it resembles breadcrumbs. Add the egg yolk and sugar, then mix again. Gradually add cold water until the dough comes together.
-2. **Chill the Dough:** Remove and knead gently into a ball. Wrap in cling film and chill for 30 minutes.
-3. **Bake the Pastry:** Preheat oven to 190C/170C fan/gas 4. Grease a 23cm fluted tart tin, roll out the pastry, and line the tin. Snip off excess edges. Bake with baking parchment and beans for 15 minutes, then remove and brush with egg white. Bake for another 15-20 minutes until golden.
-4. **Assemble the Pie:** Spread half the caramel in the cooled pastry case, layer with bananas, and top with remaining caramel. Refrigerate.
-5. **Top with Cream:** Whip the cream until thick and spread over the pie. Garnish with grated dark chocolate, if desired.
+## Instructions
 
-## Serving
-Serve chilled and enjoy this indulgent dessert that's sure to impress your guests!
+1. **Make the Base:**  
+   - Blitz the digestive biscuits in a food processor until fine crumbs.  
+   - Combine with melted butter and mix well.  
+   - Press the mixture into the base and sides of a 9-inch pie dish.  
+   - Refrigerate for 30 minutes to set.
+
+2. **Prepare the Toffee:**  
+   - Boil the unopened can of condensed milk in a large pot of water for 2-3 hours (ensure it is covered in water).  
+   - Allow it to cool completely before opening.
+
+3. **Assemble the Pie:**  
+   - Spread the toffee over the biscuit base.  
+   - Slice bananas and place on top of the toffee.
+   
+   - Whip the double cream with icing sugar until soft peaks form, then spread over the bananas.
+   - Finish with grated chocolate on top.
+
+4. **Chill and Serve:**  
+   - Refrigerate for at least an hour before serving.  
+   - Slice and enjoy!

@@ -174,3 +174,6 @@ cython_debug/
 .pypirc
 
 .DS_Store
+
+# Ignore Crew engineering team output
+3_crew/engineering_team/output/

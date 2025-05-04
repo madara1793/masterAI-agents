@@ -13,6 +13,15 @@ url = smithery.create_smithery_url("wss://server.smithery.ai/@qubaomingg/stock-a
   "alphaVantageApiKey": os.getenv("ALPHA_VANTAGE_API_KEY")
 })
 
+import base64
+
+alpha_vantage_api_key = os.getenv("ALPHA_VANTAGE_API_KEY")
+smithery_api_key = os.getenv("SMITHERY_API_KEY")
+
+config = {"alphaVantageApiKey": alpha_vantage_api_key}
+config_b64 = base64.b64encode(json.dumps(config).encode()).decode()
+url = f"wss://server.smithery.ai/@qubaomingg/stock-analysis-mcp/ws?config={config_b64}&api_key={smithery_api_key}"
+
 async def list_stock_tools():
     async with websocket_client(url) as streams:
         async with mcp.ClientSession(*streams) as session:
