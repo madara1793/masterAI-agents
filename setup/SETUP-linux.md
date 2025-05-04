@@ -59,8 +59,12 @@ When it's time to open the project in Cursor:
 2. File menu >> New Window  
 3. Click "Open project"  
 4. Navigate into the project root directory called `agents` (probably within projects) and click Open
+5. When your project opens, you may be prompted to "install recommended extensions" for Python and Jupyter. If so, choose Yes! Otherwise:
+- Open extensions (View >> extensions)
+- Search for python, and when the results show, click on the ms-python one, and Install it if not already installed
+- Search for jupyter, and when the results show, click on the Microsoft one, and Install it if not already installed
 
-Now Cursor should open with each of the weeks in the file explorer on the left.
+Now open the Explorer (View >> Explorer) and Cursor should show each of the weeks in the file explorer on the left.
 
 ### Part 3: The amazing `uv`
 
@@ -145,7 +149,7 @@ Hopefully you're now the proud owner of your very own `.env` file with your key 
 
 ## And that's it!!
 
-To get started in Cursor, open the directory called `1_foundations` in the explorer on the left, and double click on `1_lab1.ipynb` to launch the first lab. Click where it says "Select Kernel" near the top right, and select the option called `.venv (Python 3.12.9)` or similar, which should be the first choice or the most prominent choice. Then click in the first cell with code, and press Shift + Enter to execute it.
+To get started in Cursor, check that you've installed the Python and Jupyter extensions as described in Part 2 above. Then, open the directory called `1_foundations` in the explorer on the left, and double click on `1_lab1.ipynb` to launch the first lab. Click where it says "Select Kernel" near the top right, and select the option called `.venv (Python 3.12.9)` or similar, which should be the first choice or the most prominent choice (you might need to click 'Python Environments' first). Then click in the first cell with code, and press Shift + Enter to execute it.
 
 After you click "Select Kernel", if there is no option like `.venv (Python 3.12.9)` then please do the following:  
 1. From the Cursor menu, choose Settings >> VSCode Settings (NOTE: be sure to select `VSCode Settings` not `Cursor Settings`)   
