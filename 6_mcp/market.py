@@ -55,7 +55,7 @@ def get_share_price_polygon(symbol) -> float:
 def get_share_price(symbol) -> float:
     if polygon_api_key:
         try:
-            return get_share_price_polygon_eod(symbol)
+            return get_share_price_polygon(symbol)
         except Exception as e:
             print(f"Was not able to use the polygon API due to {e}; using a random number")
     return float(random.randint(1, 100))
