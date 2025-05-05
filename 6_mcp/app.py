@@ -99,14 +99,14 @@ class TraderView:
         with gr.Column():
             gr.HTML(self.trader.get_title())
             with gr.Row():
-                self.portfolio_value = gr.HTML(self.trader.get_portfolio_value())
+                self.portfolio_value = gr.HTML(self.trader.get_portfolio_value)
             with gr.Row():
-                self.chart = gr.Plot(self.trader.get_portfolio_value_chart(), container=True, show_label=False)
+                self.chart = gr.Plot(self.trader.get_portfolio_value_chart, container=True, show_label=False)
             with gr.Row(variant="panel"):
-                self.log = gr.HTML(self.trader.get_logs())
+                self.log = gr.HTML(self.trader.get_logs)
             with gr.Row():
                 self.holdings_table = gr.Dataframe(
-                    value=self.trader.get_holdings_df(),
+                    value=self.trader.get_holdings_df,
                     label="Holdings",
                     headers=["Symbol", "Quantity"],
                     row_count=(5, "dynamic"),
@@ -116,7 +116,7 @@ class TraderView:
                 )
             with gr.Row():
                 self.transactions_table = gr.Dataframe(
-                    value=self.trader.get_transactions_df(),
+                    value=self.trader.get_transactions_df,
                     label="Recent Transactions",
                     headers=["Timestamp", "Symbol", "Quantity", "Price", "Rationale"],
                     row_count=(5, "dynamic"),

@@ -17,8 +17,8 @@ names = ["Warren", "George", "Ray", "Cathie"]
 lastnames = ["Patience", "Bold", "Systematic", "Crypto"]
 
 if USE_MANY_MODELS:
-    model_names = ["openai/gpt-4o-mini", "deepseek-chat", "google/gemini-2.5-flash-preview", "x-ai/grok-3-mini-beta"]
-    short_model_names = ["GPT 4o mini", "DeepSeek V3", "Gemini 2.5 Pro", "Grok 3 Mini"]
+    model_names = ["gpt-4.1-mini", "deepseek-chat", "google/gemini-2.5-flash-preview", "grok-3-mini-beta"]
+    short_model_names = ["GPT 4.1 Mini", "DeepSeek V3", "Gemini 2.5 Flash", "Grok 3 Mini"]
 else:
     model_names = ["gpt-4o-mini"] * 4
     short_model_names = ["GPT 4o mini"] * 4
