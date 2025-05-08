@@ -29,9 +29,12 @@ Fill in the required API keys and configuration values inside the .env file.
 ### 3. Run the Web Interface
 
 Navigate to the community-contributions directory and run:
+Make sure you are standing in community contributions directory
+Directory should look like this
+
+agents\2_openai\community_contributions>
 
 ```bash
-cd community-contributions
 uv run adk web
 ```
 
