@@ -49,6 +49,8 @@ This creates a new directory `agents` within your Projects folder and downloads 
 
 ### Part 2: Install Cursor
 
+A word about Cursor: it's a cool product, but it's not to everyone's liking. It can also have a habit of being flakey with the AI recommendations. As student Alireza points out, you can use VS Code (or any IDE) in its place if you prefer. Cursor itself is built from VS Code and everything on this course will work fine in either.
+
 1. Visit cursor at https://www.cursor.com/
 2. Click Sign In on the top right, then Sign Up, to create your account
 3. Download and follow its instructions to install and open Cursor
@@ -78,6 +80,12 @@ https://docs.astral.sh/uv/getting-started/installation/
 
 Then within Cursor, select View >> Terminal, to see a Terminal window within Cursor.  
 Type `pwd` to see the current directory, and check you are in the 'agents' directory. For me it is `/Users/ed/projects/agents` and it should be something similar for you.
+
+One thing to watch for: if you've used Anaconda before, make sure that your Anaconda environment is deactivated before you run uv sync   
+`conda deactivate`
+
+And if you still have any problems with python versions, it's possible that you will need this too:  
+`conda config --set auto_activate_base false`
 
 And now simply run:  
 `uv sync`  
