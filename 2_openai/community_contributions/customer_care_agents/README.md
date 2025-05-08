@@ -18,7 +18,15 @@ Make sure you have [**uv**](https://github.com/astral-sh/uv) installed, then run
 uv add google-adk pandas
 ```
 
-### 2. Run the Web Interface
+### 2. Set Up Environment Variables
+Create a .env file in the root of the project using the provided .env-example as a template:
+
+```bash
+cp .env-example .env
+```
+Fill in the required API keys and configuration values inside the .env file.
+
+### 3. Run the Web Interface
 
 Navigate to the community-contributions directory and run:
 
@@ -27,7 +35,7 @@ cd community-contributions
 uv run adk web
 ```
 
-3. Interact with the Agent
+### 4. Interact with the Agent
 You can now access the web interface and interact with the AI customer care agent. Ask questions about the perfume products, and the agent will respond based on the generated dataset.
 
 📁 Notes
