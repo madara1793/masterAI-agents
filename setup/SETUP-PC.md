@@ -13,16 +13,18 @@ LinkedIn: https://www.linkedin.com/in/eddonner/
 
 _If you're looking at this in Cursor, please right click on the filename in the Explorer on the left, and select "Open preview", to view the formatted version._
 
-### Before we begin - Heads up!
-
 If you are relatively new to using the Command Prompt, here is an excellent [guide](https://chatgpt.com/share/67b0acea-ba38-8012-9c34-7a2541052665) with instructions and exercises. I'd suggest you work through this first to build some confidence.
+
+### Before we begin - Heads up! Please read this.
+
+**Special Note** several students have hit items 3 and 4 in the list below. If you haven't addressed this before on your computer, this will come back to bite you at some point 😅 - please read these and investigate! Your PC needs to support filenames longer than 260 characters, and have Microsoft Build Tools installed, otherwise some Data Science packages will break.
 
 There are 4 common gotchas to developing on Windows to be aware of:   
 
 1. Permissions. Please take a look at this [tutorial](https://chatgpt.com/share/67b0ae58-d1a8-8012-82ca-74762b0408b0) on permissions on Windows  
 2. Anti-virus, Firewall, VPN. These can interfere with installations and network access; try temporarily disabling them as needed  
 3. The evil Windows 260 character limit to filenames - here is a full [explanation and fix](https://chatgpt.com/share/67b0afb9-1b60-8012-a9f7-f968a5a910c7)!  
-4. If you've not worked with Data Science packages on your computer before, you might need to install Microsoft Build Tools. Here are [instructions](https://chatgpt.com/share/67b0b762-327c-8012-b809-b4ec3b9e7be0). A student also mentioned that [these instructions](https://github.com/bycloudai/InstallVSBuildToolsWindows) might be helpful for people on Windows 11.    
+4. If you've not worked with Data Science packages on your computer before, you'll need to install Microsoft Build Tools. Here are [instructions](https://chatgpt.com/share/67b0b762-327c-8012-b809-b4ec3b9e7be0). A student also mentioned that [these instructions](https://github.com/bycloudai/InstallVSBuildToolsWindows) might be helpful for people on Windows 11.    
 
 ### Part 1: Clone the Repo
 
@@ -90,7 +92,9 @@ https://docs.astral.sh/uv/getting-started/installation/
 Then within Cursor, select View >> Terminal, to see a Terminal window within Cursor.  
 Type `pwd` to see the current directory, and check you are in the 'agents' directory - like `C:\Users\YourUsername\Documents\Projects\agents` or similar
 
-One thing to watch for: if you've used Anaconda before, make sure that your Anaconda environment is deactivated before you run uv sync   
+Start by running `uv self update` to make sure you're on the latest version of uv.
+
+One thing to watch for: if you've used Anaconda before, make sure that your Anaconda environment is deactivated   
 `conda deactivate`  
 And if you still have any problems with conda and python versions, it's possible that you will need to run this too:  
 `conda config --set auto_activate_base false`  
@@ -100,6 +104,24 @@ And now simply run:
 And marvel at the speed and reliability! If necessary, uv should install python 3.12, and then it should install all the packages.  
 If you get an error about "invalid certificate" while running `uv sync`, then please try this instead:  
 `uv --native-tls sync`  
+
+Finally, run these commands to be ready to use CrewAI in week 3:  
+`uv tool install crewai`   
+Followed by:  
+`uv tool upgrade crewai`  
+
+Checking that everything is set up nicely:  
+1. Confirm that you now have a folder called '.venv' in your project root directory (agents)
+2. If you run `uv python list` you should see a Python 3.12 version in your list (there might be several)
+3. If you run `uv tool list` you should see crewai as a tool
+
+Just FYI on using uv:  
+With uv, you do a few things differently:  
+- Instead of `pip install xxx` you do `uv add xxx` - it gets included in your `pyproject.toml` file and will be automatically installed next time you need it  
+- Instead of `python my_script.py` you do `uv run my_script.py` which updates and activates the environment and calls your script  
+- You don't actually need to run `uv sync` because uv does this for you whenever you call `uv run`  
+- It's better not to edit pyproject.toml yourself, and definitely don't edit uv.lock. If you want to upgrade all your packages, run `uv lock --upgrade`
+- uv has really terrific docs [here](https://docs.astral.sh/uv/) - well worth a read!
 
 ### Part 4: OpenAI Key
 
