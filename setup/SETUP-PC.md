@@ -168,7 +168,7 @@ Hopefully you're now the proud owner of your very own `.env` file with your key 
 To get started in Cursor, check that you've installed the Python and Jupyter extensions as described in Part 2 above. Then, open the directory called `1_foundations` in the explorer on the left, and double click on `1_lab1.ipynb` to launch the first lab. Click where it says "Select Kernel" near the top right, and select the option called `.venv (Python 3.12.9)` or similar, which should be the first choice or the most prominent choice (you might need to click 'Python Environments' first). Then click in the first cell with code, and press Shift + Enter to execute it.
 
 After you click "Select Kernel", if there is no option like `.venv (Python 3.12.9)` then please do the following:  
-1. From the Cursor menu, choose Settings >> VSCode Settings (NOTE: be sure to select `VSCode Settings` not `Cursor Settings`)  
+1. From the File menu, choose Preferences >> VSCode Settings (NOTE: be sure to select `VSCode Settings` not `Cursor Settings`)  
 2. In the Settings search bar, type "venv"  
 3. In the field "Path to folder with a list of Virtual Environments" put the path to the project root, like C:\Users\username\projects\agents
 And then try again.

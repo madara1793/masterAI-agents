@@ -55,6 +55,14 @@ A word about Cursor: it's a cool product, but it's not to everyone's liking. It 
 2. Click Sign In on the top right, then Sign Up, to create your account
 3. Download and follow its instructions to install and open Cursor
 
+Some notes from a student (thank you Ernst!):  
+For Linux users the installation is not as straightforward, here are two resources that helped me install Cursor:  
+- https://forum.cursor.com/t/can-you-add-a-how-to-guide-on-installing-using-cursor-in-ubuntu/16646/2
+-> look for the video and watch the first four minutes.
+- https://github.com/OpenShot/openshot-qt/issues/4789 -> there are many issues regarding Appimage and Fuse, and via this post I learned to install libfuse2 which helped fix the issue.  
+Note! Although I am currently on Ubuntu 22.04 and did not face any issues, there have been serious graphical issues reported with fuse on Ubuntu 24.x. Be careful and read a few blogs before you sudo apt install new libraries.
+
+
 After you start Cursor, you can pick the defaults for all its questions.  
 When it's time to open the project in Cursor:  
 1. Launch Cursor, if it's not already running  
