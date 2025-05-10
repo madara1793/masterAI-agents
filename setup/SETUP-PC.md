@@ -185,6 +185,8 @@ Here's the thing: it **needs** to go in the directory named `agents` and it **ne
 
 Hopefully you're now the proud owner of your very own `.env` file with your key inside, and you're ready for action.
 
+**IMPORTANT: be sure to Save the .env file after you edit it.**
+
 ## And that's it!!
 
 To get started in Cursor, check that you've installed the Python and Jupyter extensions as described in Part 2 above. Then, open the directory called `1_foundations` in the explorer on the left, and double click on `1_lab1.ipynb` to launch the first lab. Click where it says "Select Kernel" near the top right, and select the option called `.venv (Python 3.12.9)` or similar, which should be the first choice or the most prominent choice (you might need to click 'Python Environments' first). Then click in the first cell with code, and press Shift + Enter to execute it.
