@@ -95,6 +95,8 @@ And now simply run:
 And marvel at the speed and reliability! If necessary, uv should install python 3.12, and then it should install all the packages.  
 If you get an error about "invalid certificate" while running `uv sync`, then please try this instead:  
 `uv --native-tls sync`  
+And also try this instead:  
+`uv --allow-insecure-host github.com sync`
 
 Finally, run these commands to be ready to use CrewAI in week 3:  
 `uv tool install crewai`   

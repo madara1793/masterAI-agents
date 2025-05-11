@@ -23,7 +23,7 @@ There are 4 common gotchas to developing on Windows to be aware of:
 
 1. Permissions. Please take a look at this [tutorial](https://chatgpt.com/share/67b0ae58-d1a8-8012-82ca-74762b0408b0) on permissions on Windows  
 2. Anti-virus, Firewall, VPN. These can interfere with installations and network access; try temporarily disabling them as needed  
-3. The evil Windows 260 character limit to filenames - here is a full [explanation and fix](https://chatgpt.com/share/67b0afb9-1b60-8012-a9f7-f968a5a910c7)!  
+3. The evil Windows 260 character limit to filenames - here is a full [explanation and fix](https://chatgpt.com/share/67b0afb9-1b60-8012-a9f7-f968a5a910c7)! You'll need to restart after making the change.  
 4. If you've not worked with Data Science packages on your computer before, you'll need to install Microsoft Build Tools. Here are [instructions](https://chatgpt.com/share/67b0b762-327c-8012-b809-b4ec3b9e7be0). A student also mentioned that [these instructions](https://github.com/bycloudai/InstallVSBuildToolsWindows) might be helpful for people on Windows 11.    
 
 ### Part 1: Clone the Repo
@@ -104,6 +104,8 @@ And now simply run:
 And marvel at the speed and reliability! If necessary, uv should install python 3.12, and then it should install all the packages.  
 If you get an error about "invalid certificate" while running `uv sync`, then please try this instead:  
 `uv --native-tls sync`  
+And also try this instead:  
+`uv --allow-insecure-host github.com sync`
 
 Finally, run these commands to be ready to use CrewAI in week 3:  
 `uv tool install crewai`   
