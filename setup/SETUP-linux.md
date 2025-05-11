@@ -130,6 +130,8 @@ But it is strongly recommended for the best performance of your Agentic system.
 If you have concerns about API costs and would prefer to use cheap or free alternatives, please see [this guide](../guides/09_ai_apis_and_ollama.ipynb)  
 This includes instructions for using OpenRouter instead of OpenAI, which may have a more convenient billing system for some countries.
 
+_If you decide to use the free alternative (Ollama), then please skip the Part 4 and Part 5 of this setup guide; there's no need for an API key or a .env file. Go straight to the section headed "And that's it!" below._
+
 For OpenAI:
 
 1. Create an OpenAI account if you don't have one by visiting:  
