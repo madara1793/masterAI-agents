@@ -107,7 +107,7 @@ If you get an error about "invalid certificate" while running `uv sync`, then pl
 And also try this instead:  
 `uv --allow-insecure-host github.com sync`
 
-Finally, run these commands to be ready to use CrewAI in week 3:  
+Finally, run these commands to be ready to use CrewAI in week 3 - but please note that this needs you to have installed Microsoft Build Tools (#4 in the 'gotchas' section at the top of this doc):  
 `uv tool install crewai`   
 Followed by:  
 `uv tool upgrade crewai`  

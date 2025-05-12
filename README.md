@@ -26,7 +26,8 @@ Any problems, please do contact me.
 
 ### Important notes for CrewAI week (Week 3)
 
-You will need to run this command in a Cursor Terminal in the project root directory in order to run the Crew commands:  
+Windows PC users: you will need to have checked the "gotcha #4" at the top of the [SETUP-PC](setup/SETUP-PC.md) instructions -- installing Microsoft Build Tools.  
+Then, you will need to run this command in a Cursor Terminal in the project root directory in order to run the Crew commands:  
 `uv tool install crewai`   
 And in case you've used Crew before, it might be worth doing this to make sure you have the latest:  
 `uv tool upgrade crewai`  
