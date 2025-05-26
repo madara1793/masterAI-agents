@@ -23,7 +23,7 @@ There are 4 common gotchas to developing on Windows to be aware of:
 
 1. Permissions. Please take a look at this [tutorial](https://chatgpt.com/share/67b0ae58-d1a8-8012-82ca-74762b0408b0) on permissions on Windows  
 2. Anti-virus, Firewall, VPN. These can interfere with installations and network access; try temporarily disabling them as needed  
-3. The evil Windows 260 character limit to filenames - here is a full [explanation and fix](https://chatgpt.com/share/67b0afb9-1b60-8012-a9f7-f968a5a910c7)!  
+3. The evil Windows 260 character limit to filenames - here is a full [explanation and fix](https://chatgpt.com/share/67b0afb9-1b60-8012-a9f7-f968a5a910c7)! You'll need to restart after making the change.  
 4. If you've not worked with Data Science packages on your computer before, you'll need to install Microsoft Build Tools. Here are [instructions](https://chatgpt.com/share/67b0b762-327c-8012-b809-b4ec3b9e7be0). A student also mentioned that [these instructions](https://github.com/bycloudai/InstallVSBuildToolsWindows) might be helpful for people on Windows 11.    
 
 ### Part 1: Clone the Repo
@@ -104,8 +104,10 @@ And now simply run:
 And marvel at the speed and reliability! If necessary, uv should install python 3.12, and then it should install all the packages.  
 If you get an error about "invalid certificate" while running `uv sync`, then please try this instead:  
 `uv --native-tls sync`  
+And also try this instead:  
+`uv --allow-insecure-host github.com sync`
 
-Finally, run these commands to be ready to use CrewAI in week 3:  
+Finally, run these commands to be ready to use CrewAI in week 3 - but please note that this needs you to have installed Microsoft Build Tools (#4 in the 'gotchas' section at the top of this doc):  
 `uv tool install crewai`   
 Followed by:  
 `uv tool upgrade crewai`  
@@ -131,6 +133,8 @@ But it is strongly recommended for the best performance of your Agentic system.
 
 If you have concerns about API costs and would prefer to use cheap or free alternatives, please see [this guide](../guides/09_ai_apis_and_ollama.ipynb)  
 This includes instructions for using OpenRouter instead of OpenAI, which may have a more convenient billing system for some countries.
+
+_If you decide to use the free alternative (Ollama), then please skip the Part 4 and Part 5 of this setup guide; there's no need for an API key or a .env file. Go straight to the section headed "And that's it!" below._
 
 For OpenAI:
 

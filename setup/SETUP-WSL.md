@@ -29,13 +29,14 @@ It's important to appreciate the difference between your Windows home directory,
 
 ### Part 2: Install uv and repo
 
-1. In a WSL window (i.e. a Powershell after you've typed 'wsl') - we will follow the linux instructions here: https://docs.astral.sh/uv/getting-started/installation/ and run `curl -LsSf https://astral.sh/uv/install.sh | sh`
-2. After that completes, you need to type `exit` to leave WSL and return to the Powershell and then type `wsl` to return to Linux, in order that changes to PATH are picked up
-3. Now type `cd` to go to your Linux home directory. Check you're there with `pwd` and `ls`
-4. Now create a projects directory with `mkdir projects` then `cd projects` to go into it
-5. And, from within your new projects directory, clone the repo with `git clone https://github.com/ed-donner/agents.git`
-6. Now go into your new agents directory, your Project Root Directory, with `cd agents`
-7. And now run the all-powerful `uv sync`
+1. From a powershell, run `ubuntu` - note that it's important to do `ubuntu` rather than `wsl` because it starts you in your Linux home directory  
+2. Then follow the linux instructions here: https://docs.astral.sh/uv/getting-started/installation/ and run `curl -LsSf https://astral.sh/uv/install.sh | sh`
+3. After that completes, you need to type `exit` to leave WSL and return to the Powershell and then type `ubuntu` to return to Linux, in order that changes to PATH are picked up
+4. Now type `pwd` to check you're in your Linux home directory. If in doubt, `cd ~` and `ls` to check.
+5. Now create a projects directory with `mkdir projects` then `cd projects` to go into it
+6. And, from within your new projects directory, clone the repo with `git clone https://github.com/ed-donner/agents.git`
+7. Now go into your new agents directory, your Project Root Directory, with `cd agents`
+8. And now run the all-powerful `uv sync`
 
 At this point, I experienced an unpleasant memory error. I believe it's related to my setup, and you shouldn't hit it. But if you do, please let me know - I have a fix!
 

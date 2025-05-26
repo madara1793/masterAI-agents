@@ -95,6 +95,8 @@ And now simply run:
 And marvel at the speed and reliability! If necessary, uv should install python 3.12, and then it should install all the packages.  
 If you get an error about "invalid certificate" while running `uv sync`, then please try this instead:  
 `uv --native-tls sync`  
+And also try this instead:  
+`uv --allow-insecure-host github.com sync`
 
 Finally, run these commands to be ready to use CrewAI in week 3:  
 `uv tool install crewai`   
@@ -122,6 +124,8 @@ But it is strongly recommended for the best performance of your Agentic system.
 
 If you have concerns about API costs and would prefer to use cheap or free alternatives, please see [this guide](../guides/09_ai_apis_and_ollama.ipynb)  
 This includes instructions for using OpenRouter instead of OpenAI, which may have a more convenient billing system for some countries.
+
+_If you decide to use the free alternative (Ollama), then please skip the Part 4 and Part 5 of this setup guide; there's no need for an API key or a .env file. Go straight to the section headed "And that's it!" below._
 
 For OpenAI:
 
