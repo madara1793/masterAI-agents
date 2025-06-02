@@ -49,9 +49,19 @@ This creates a new directory `agents` within your Projects folder and downloads 
 
 ### Part 2: Install Cursor
 
+A word about Cursor: it's a cool product, but it's not to everyone's liking. It can also have a habit of being flakey with the AI recommendations. As student Alireza points out, you can use VS Code (or any IDE) in its place if you prefer. Cursor itself is built from VS Code and everything on this course will work fine in either.
+
 1. Visit cursor at https://www.cursor.com/
 2. Click Sign In on the top right, then Sign Up, to create your account
 3. Download and follow its instructions to install and open Cursor
+
+Some notes from a student (thank you Ernst!):  
+For Linux users the installation is not as straightforward, here are two resources that helped me install Cursor:  
+- https://forum.cursor.com/t/can-you-add-a-how-to-guide-on-installing-using-cursor-in-ubuntu/16646/2
+-> look for the video and watch the first four minutes.
+- https://github.com/OpenShot/openshot-qt/issues/4789 -> there are many issues regarding Appimage and Fuse, and via this post I learned to install libfuse2 which helped fix the issue.  
+Note! Although I am currently on Ubuntu 22.04 and did not face any issues, there have been serious graphical issues reported with fuse on Ubuntu 24.x. Be careful and read a few blogs before you sudo apt install new libraries.
+
 
 After you start Cursor, you can pick the defaults for all its questions.  
 When it's time to open the project in Cursor:  
@@ -79,11 +89,39 @@ https://docs.astral.sh/uv/getting-started/installation/
 Then within Cursor, select View >> Terminal, to see a Terminal window within Cursor.  
 Type `pwd` to see the current directory, and check you are in the 'agents' directory. For me it is `/Users/ed/projects/agents` and it should be something similar for you.
 
+Start by running `uv self update` to make sure you're on the latest version of uv.
+
+One thing to watch for: if you've used Anaconda before, make sure that your Anaconda environment is deactivated   
+`conda deactivate`
+
+And if you still have any problems with python versions, it's possible that you will need this too:  
+`conda config --set auto_activate_base false`
+
 And now simply run:  
 `uv sync`  
 And marvel at the speed and reliability! If necessary, uv should install python 3.12, and then it should install all the packages.  
 If you get an error about "invalid certificate" while running `uv sync`, then please try this instead:  
 `uv --native-tls sync`  
+And also try this instead:  
+`uv --allow-insecure-host github.com sync`
+
+Finally, run these commands to be ready to use CrewAI in week 3:  
+`uv tool install crewai`   
+Followed by:  
+`uv tool upgrade crewai`  
+
+Checking that everything is set up nicely:  
+1. Confirm that you now have a folder called '.venv' in your project root directory (agents)
+2. If you run `uv python list` you should see a Python 3.12 version in your list (there might be several)
+3. If you run `uv tool list` you should see crewai as a tool
+
+Just FYI on using uv:  
+With uv, you do a few things differently:  
+- Instead of `pip install xxx` you do `uv add xxx` - it gets included in your `pyproject.toml` file and will be automatically installed next time you need it  
+- Instead of `python my_script.py` you do `uv run my_script.py` which updates and activates the environment and calls your script  
+- You don't actually need to run `uv sync` because uv does this for you whenever you call `uv run`  
+- It's better not to edit pyproject.toml yourself, and definitely don't edit uv.lock. If you want to upgrade all your packages, run `uv lock --upgrade`
+- uv has really terrific docs [here](https://docs.astral.sh/uv/) - well worth a read!
 
 ### Part 4: OpenAI Key
 
@@ -93,6 +131,8 @@ But it is strongly recommended for the best performance of your Agentic system.
 
 If you have concerns about API costs and would prefer to use cheap or free alternatives, please see [this guide](../guides/09_ai_apis_and_ollama.ipynb)  
 This includes instructions for using OpenRouter instead of OpenAI, which may have a more convenient billing system for some countries.
+
+_If you decide to use the free alternative (Ollama), then please skip the Part 4 and Part 5 of this setup guide; there's no need for an API key or a .env file. Go straight to the section headed "And that's it!" below._
 
 For OpenAI:
 
@@ -146,6 +186,8 @@ DEEPSEEK_API_KEY=xxxx
 Here's the thing: it **needs** to go in the directory named `agents` and it **needs** to be named precisely `.env` -- not "env" and not "env.txt" or ".env.txt" but exactly the 4 characters `.env` otherwise it won't work!! 
 
 Hopefully you're now the proud owner of your very own `.env` file with your key inside, and you're ready for action.
+
+**IMPORTANT: be sure to Save the .env file after you edit it.**
 
 ## And that's it!!
 
